@@ -1,89 +1,71 @@
+import sys
+import os
+
+# Adiciona o caminho para importar da pasta lib
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from libraries.validation import*
+
 class Product:
-    # Атрибут Класса
-    store_name = "DGLinfo Store"
+    store_name = "PROLTCH ANGOLA"
 
     def __init__(self, name: str, model: str, price: float, stock: int):
-        # Личные Атрибуты
-        self._name = self._validate_name(name)
-        self._model = self._validate_model(model)
-        self._price = self._validate_price(price)
-        self._stock = self._validate_stock(stock)        
-        self._is_active = True  # Логическое Состояние (Estado lógico)
-
-    # --- Методы Валидации ---
-    def _validate_name(self, name):
-        if not isinstance(name, str) or len(name.strip()) == 0:
-            raise ValueError("Имя должно быть непустой строкой.")
-        return name.strip()
-
-    def _validate_price(self, price):
-        if not isinstance(price, (int, float)) or price <= 0:
-            raise ValueError("Цена должна быть положительным числом.")
-        return float(price)
-
-    def _validate_stock(self, stock):
-        if not isinstance(stock, int) or stock < 0:
-            raise ValueError("Номер товара на складе должен быть неотрицательным целым числом.")
-        return stock
+        # Atributos de instância (4+1)
+        self._name = validate_non_empty_string(name, "Nome")
+        self._price = validate_positive_number(price, "Preço")
+        self._stock = validate_positive_int(stock, "Stock")
+        self._model = validate_min_length(model, 3, "Modelo")
+        self._is_active = True
     
-    def _validate_model(self, model):
-        if not isinstance(model, str) or len(model) < 3:
-            raise ValueError("O modelo deve ter pelo menos 3 caracteres.")
-        return model.strip()
-
     # --- property (Getters e Setters) Свойства (@property) для чтения---
     @property
     def name(self):
-        return self._name
+        return self._name #Gets the name of the product
 
     @property
     def price(self):
-        return self._price
+        return self._price #Gets the price of the product
 
     @price.setter
     def price(self, value):
-        self._price = self._validate_price(value)
+        # Utiliza a função externa de validação
+        self._price = validate_positive_number(value, "Preço") #Sets the price of the product, but validating its price
 
     @property
     def stock(self):
-        return self._stock
+        return self._stock #Gets the stock of the product
     
     @property
-    def model(self): return self._model
+    def model(self): return self._model #Gets the model of the product
     
     @property
     def is_active(self):
-        return self._is_active
+        return self._is_active #Gets the status of the product
+    
+    # Métodos Mágicos
+    def __str__(self): #OUTPUT FOR USERS
+        status = "ATIVO" if self._is_active else "INATIVO"
+        return f"{self._name} | model: {self._model} | {self._price:.2f} RUB | Stock: {self._stock} [{status}]"
 
-    # --- Магические Методы ---
-    def __str__(self):
-        status = "Activated" if self._is_active and self._stock > 0 else "Deactivated"
-        return f"Product: {self._name} | Model: {self._model} | Price: {self._price:.2f}₽ | Stock: {self._stock} [{status}]"
+    def __repr__(self): #OUTPUT FOR DEVELOPERS
+        return f"Product('{self._name}', {self._model}, {self._price}, {self._stock})"
 
-    def __repr__(self):
-        return f"Product(name='{self._name}', model='{self._model}, price={self._price}, stock={self._stock})"
+    def __eq__(self, other): #COMPARING IF 2 PRODUCTS ARE EQUALS IN NAME AND MODEL
+        if not isinstance(other, Product): return False
+        is_equal = (self._name.lower() == other._name.lower() and #Name
+                    self._model.lower() == other._model.lower()) #Model
+        if is_equal: #Warning if found equals products, it is, if "is_equal is true"
+            print(f"⚠️ [WARNING]: O produto '{self._name}' ({self._model}) é idêntico ao produto comparado!")
+        return is_equal
 
-    def __eq__(self, other):
-        if not isinstance(other, Product):
-            return False
-        return self._name.lower() == other._name.lower() and self._model.lower() == other._model.lower()
-
-    # --- Métodos de Negócio / Методы Ведения Бизнеса ---
+    # Métodos de Negócio e Estado
     def deactivate(self):
-        """
-            Altera o estado do objeto. Изменяет состояние объекта.
-        """
         self._is_active = False
-        print(f"Product '{self._name}' was deactivated.")
+        print (f"Product \"{self._name}, {self._model}\"  deactivated!!!. To activate use funtion activate()")
 
     def activate(self):
-        """
-            Altera o estado do produto para ativo.
-            Изменяет статус продукта на активный.
-        """
         self._is_active = True
-        print(f"INFO: Product '{self._name}' is now activated.")
-    
+        print (f"Product \"{self._name}, {self._model}\"  activated!!!. To deactivate use funtion deactivate()")
+
     def apply_discount(self, percentage: float):
         """
             Método de negócio com condicional de estado.
@@ -96,21 +78,19 @@ class Product:
         if 0 < percentage < 100:
             discount_amount = self._price * (percentage / 100)
             self._price -= discount_amount
-            print(f"Descount of {percentage}% applied to the product {self.name}. New price: {self._price:.2f}₽")
+            print(f"Descount of {percentage}% applied to the product \"{self._name}, {self._model}\". New price: {self._price:.2f}₽")
         else:
             print("Неверный процент скидки. Допустимый процент: 0 - 100")
 
     def sell(self, quantity: int):
-        """
-            Método de negócio que depende do valor do stock.
-            Метод ведения бизнеса, основанный на стоимости товарных запасов.
-        """
         if not self._is_active:
-            print(f"Error: The product is deactivated. The sale cannot be completed.\n")
+            print(f"Error: The product \"{self._name}, {self._model}\" is deactivated. The sale cannot be completed.", end=" ")
             print(f"Enable the product so you can make the sale.")
             return
-        if quantity <= self._stock:
-            self._stock -= quantity
-            print(f"Sale completed: {quantity} units of {self._name}.")
-        else:
+        
+        if quantity > self._stock or self._stock==0:
             print(f"Error: Insufficient stock to sell {quantity} units.")
+        else:
+            self._stock -= quantity
+            print(f"Sale completed: {quantity} units of \"{self._name}, {self._model}\".", end=" ")
+            print(f"Now there are {self._stock} units of \"{self._name}, {self._model}\".")
