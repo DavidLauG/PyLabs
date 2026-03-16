@@ -1,6 +1,7 @@
 from model import Product
 
 def run_demo():
+    Product.store_name = "PROLTCH ANGOLA"
     print(f"--- {Product.store_name} ---\n")
 
     # Demonstração de Erro de Validação (Proveniente do lib/validators.py)

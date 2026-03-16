@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from libraries.validation import*
 
 class Product:
-    store_name = "PROLTCH ANGOLA"
+    store_name = ""
 
     def __init__(self, name: str, model: str, price: float, stock: int):
         # Atributos de instância (4+1)
