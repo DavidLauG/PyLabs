@@ -1,4 +1,8 @@
-# Лаборатория объектно-ориентированного программирования
-## ЛР-1 — Класс и инкапсуляция (Python 3.x)
+# Лаборатория объектно-ориентированного программирования (Python 3.x)  - Вариант 3: Интернет-магазин
+## ЛР-1 — Класс и инкапсуляция
 
 #### *[Перейти в Лабораторию 01](./src/lab01/README%20RU.md)* | *[Go to Laboratory 01](./src/lab01/README%20ENG.md)* | *[Aceder ao Laboratório 01](./src/lab01/README%20PT.md)*
+
+## ЛР-2 — Коллекция объектов
+
+#### *[Перейти в Лабораторию 01](./src/lab02/Readme.md)* | *[Go to Laboratory 01](./src/lab02/Readme.md)* | *[Aceder ao Laboratório 01](./src/lab02/Readme.md)*
