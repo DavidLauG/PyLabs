@@ -5,4 +5,4 @@
 
 ## ЛР-2 — Коллекция объектов
 
-#### *[Перейти в Лабораторию 01](./src/lab02/Readme.md)* | *[Go to Laboratory 01](./src/lab02/Readme.md)* | *[Aceder ao Laboratório 01](./src/lab02/Readme.md)*
+#### *[Перейти в Лабораторию 02](./src/lab02/Readme.md)* | *[Go to Laboratory 02](./src/lab02/Readme.md)* | *[Aceder ao Laboratório 02](./src/lab02/Readme.md)*
