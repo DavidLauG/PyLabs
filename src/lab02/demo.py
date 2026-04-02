@@ -13,42 +13,50 @@ def run_demo():
 
     # 1. Criação de Dados Base
     p1 = Product("Laptop", "Thinkpad", 1200.0, 10)
-    p2 = Product("Mouse", "Logitech", 50.0, 0) # Sem stock
+    p2 = Product("Mouse", "Logitech", 450.0, 0) # Without stock
     p3 = Product("Monitor", "Dell 27", 350.0, 5)
-    p4 = Product("Teclado", "Keychron", 150.0, 15)
+    p4 = Product("Keyboard", "Keychron", 150.0, 15)
+    p5 = Product("Printer", "HP-34", 150.0, 15)
 
     # --- CENÁRIO 1: Integridade e Indexação ---
-    print("--- Cenário 1: Adição e Proteção de Duplicados ---")
+    print("--- Сценарий 1: Добавление и защита дубликатов ---") #Cenário 1: Adição e Proteção de Duplicados
     catalog.add(p1)
     catalog.add(p2)
     catalog.add(p3)
     catalog.add(p4)
+    catalog.add(p5)
     # Tentativa de duplicado (mesmo nome e modelo)
     p_dup = Product("Laptop", "Thinkpad", 1000.0, 1)
-    catalog.add(p_dup) 
+    catalog.add(p_dup) #Returns a duplicate product warning.
     
-    print(f"\nItem no índice 2: {catalog[2].name}") # __getitem__
-    print(f"Total de itens: {len(catalog)}") # __len__
+    print(f"\nТовар со 2-й позиции: {catalog[1].name}") # __getitem__ - mostra o produto no index "1" que é a 2ª posção
+    print(f"Общее количество товаров: {len(catalog)}") # __len__ - mostra Número total de produtos:
 
     #--- CENÁRIO 2: Filtros e Novas Coleções ---
-    print("\n--- Cenário 2: Filtros Lógicos (Ativos e Preço) ---")
-    p2.deactivate() # Inativamos o mouse
+    print("\n--- Сценарий 2: Логические фильтры (активы и цена) ---") #
+    p2.deactivate() # Desativa-se o mouse
     
-    active_ones = catalog.get_active()
-    print(f"Produtos Ativos:\n{active_ones}")
+    active_ones = catalog.get_active() #Get all the activated articles
+    print(f"Ativated Products:\n{active_ones}")
     
-    expensive_ones = catalog.get_expensive_products(300.0)
-    print(f"\nProdutos Premium (>300 RUB):\n{expensive_ones}")
+    find_product=catalog.find_by_name("Laptop")
+    print(f"Товар найден: {find_product}")
+    find_product=catalog.find_by_name("Impressora")
+    print(f"Товар не найден: {find_product}")
+
+    expensive_ones = catalog.get_expensive_products(300.0) #Pega todos os produtos com preço >=300
+    print(f"Premium Products (>=300 RUB):\n{expensive_ones}")
 
     # --- CENÁRIO 3: Ordenação e Gestão de Stock ---
-    print("\n--- Cenário 3: Ordenação e Remoção ---")
-    catalog.sort_by_price(reverse=True) # Mais caro primeiro
-    print("Catálogo Ordenado por Preço (Descendente):")
+    print("\n--- Сценарий 3: Сортировка и удаление ---") #Ordenação e Remoção
+    catalog.sort_by_price(reverse=True) # Сначала дороже.
+    print("Каталог отсортирован по цене (в порядке убывания):")
     for p in catalog: # __iter__
         print(f"-> {p}")
     
     catalog.remove_at(0) # Remove o mais caro
-    print(f"\nCatálogo após remoção do índice 0:\n{catalog}")
+    catalog.remove(p5)
+    print(f"\nКаталог после удаления индекса 0:\n{catalog}")
 
 if __name__ == "__main__":
     run_demo()
