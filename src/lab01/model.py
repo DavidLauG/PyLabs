@@ -43,7 +43,7 @@ class Product:
     
     # Métodos Mágicos
     def __str__(self): #OUTPUT FOR USERS
-        status = "ATIVO" if self._is_active else "INATIVO"
+        status = "ACTIVETED" if self._is_active else "DEACTIVETED"
         return f"{self._name} | model: {self._model} | {self._price:.2f} RUB | Stock: {self._stock} [{status}]"
 
     def __repr__(self): #OUTPUT FOR DEVELOPERS

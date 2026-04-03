@@ -46,7 +46,7 @@ class ProductCatalog:
         if item not in self._items:
             raise ValueError("Товар не найден в коллекции")
         self._items.remove(item)
-        print(f"🗑️ Товар {item.name} удален!!!")
+        print(f"🗑️  Товар {item.name} удален!!!")
 
     def remove_at(self, index: int): #Remove por índice (Nota 5)
         """Remove an expecific product at desired index"""
@@ -62,16 +62,57 @@ class ProductCatalog:
             if p.name.lower() == name.lower():
                 return p
         return None
+    
+    def find_by(self, attr_name: str, value):
+        """
+        Universal search: Searches for products where the attribute 'attr_name' is equal to 'value'.
+        Example: catalog.find_by("name", "Laptop") or catalog.find_by("price", 1200.0)
+        """
+        results = []
+        for p in self._items:
+            try:
+                # getattr(p, "name") é o mesmo que p.name
+                # Usamos .lower() se o valor for string para busca insensível a maiúsculas
+                current_value = getattr(p, attr_name)
+                
+                if isinstance(value, str) and isinstance(current_value, str):
+                    if current_value.lower() == value.lower():
+                        results.append(p)
+                elif current_value == value:
+                    results.append(p)
+            except AttributeError:
+                # Se o atributo não existir no objeto Product, ignora
+                continue
+        return ProductCatalog(results) if results else None
+
 
     # --- ORDENAÇÃO E FILTROS (Nota 5) ---
-    def sort_by_price(self, reverse=False): #Ordena a coleção atual por preço.
+    def sort_by_price(self, reverse=False): #Ordena a coleção atual por preço - reverse=false <=>By default Cheaper initially.
         """Sort the current collection by price."""
         self._items.sort(key=lambda p: p.price, reverse=reverse)
         print(f"⚖️ Каталог отсортирован по цене.")
 
+    def sort_by(self, attr_name: str, reverse=False): #Ordenação Universal
+        """
+        Universal Sorting: Sorts the internal list by any attribute.
+        Example: catalog.sort_by("price") or catalog.sort_by("name", reverse=True)
+        """
+        try:
+            # A função .sort() usa uma 'key'. 
+            # O lambda diz: "Para cada produto 'p', extrai o atributo 'attr_name'".
+            self._items.sort(key=lambda p: getattr(p, attr_name), reverse=reverse)
+            print(f"⚖️  Каталог отсортирован по '{attr_name}' ({'DESC' if reverse else 'ASC'}).")
+        except AttributeError:
+            print(f"❌ Ошибка: Атрибут '{attr_name}' отсутствует в списке товаров.")
+
     def get_active(self): #Retorna uma NOVA COLEÇÃO apenas com produtos ativos.
         """Returns a NEW COLLECTION with only active products."""
         active_items = [p for p in self._items if p.is_active] #Return all activated products
+        return ProductCatalog(active_items)
+    
+    def get_deactive(self): #Retorna uma NOVA COLEÇÃO apenas com produtos ativos.
+        """Returns a NEW COLLECTION with only deactive products."""
+        active_items = [p for p in self._items if not p.is_active] #Return all activated products
         return ProductCatalog(active_items)
 
     def get_expensive_products(self, min_price: float): 
