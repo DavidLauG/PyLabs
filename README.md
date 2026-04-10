@@ -6,3 +6,7 @@
 ## ЛР-2 — Коллекция объектов
 
 #### *[Перейти в Лабораторию 02](./src/lab02/Readme.md)* | *[Go to Laboratory 02](./src/lab02/Readme.md)* | *[Aceder ao Laboratório 02](./src/lab02/Readme.md)*
+
+## ЛР-3 — Наследование и иерархия классов
+
+#### *[Перейти в Лабораторию 03](./src/lab03/Readme.md)* | *[Go to Laboratory 03](./src/lab03/Readme.md)* | *[Aceder ao Laboratório 03](./src/lab03/Readme.md)*

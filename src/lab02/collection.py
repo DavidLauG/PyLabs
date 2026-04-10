@@ -6,9 +6,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')
 from src.lab01.model import Product
 
 class ProductCatalog:
-    def __init__(self, items=None):
+    def __init__(self, items=None, removed_items = []):
         # Aceita uma lista inicial (útil para os filtros que retornam nova coleção)
         self._items = items if items is not None else []
+        self.__removed_items = removed_items
 
     # --- GESTÃO BÁSICA (Nota 3) ---
     def add(self, product: Product):

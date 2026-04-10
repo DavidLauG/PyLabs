@@ -85,6 +85,7 @@ def run_demo():
     catalog.remove_at(0) # Removed. Индекс существует
     catalog.remove(p5)
     print(f"\nКаталог после удаления индекса 0:\n{catalog}")
-
+    catalog[1].price=2000.00
+    print(f"Novo preço de {catalog[1].name}: {catalog[1].price}")
 if __name__ == "__main__":
     run_demo()
