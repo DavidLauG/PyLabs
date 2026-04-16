@@ -9,4 +9,4 @@
 
 ## ЛР-3 — Наследование и иерархия классов
 
-#### *[Перейти в Лабораторию 03](./src/lab03/Readme.md)* | *[Go to Laboratory 03](./src/lab03/Readme.md)* | *[Aceder ao Laboratório 03](./src/lab03/Readme.md)*
+#### *[Перейти в Лабораторию 03](./src/lab03/ReadmeRU.md)* | *[Go to Laboratory 03](./src/lab03/ReadmePT.md)* | *[Aceder ao Laboratório 03](./src/lab03/ReadmePT.md)*
