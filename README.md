@@ -13,4 +13,4 @@
 
 ## ЛР-4 — Интерфейсы и абстрактные классы (ABC)
 
-#### *[Перейти в Лабораторию 04](./src/lab03/ReadmeRU.md)* | *[Go to Laboratory 04](./src/lab03/ReadmePT.md)* | *[Aceder ao Laboratório 04](./src/lab03/ReadmePT.md)*
+#### *[Перейти в Лабораторию 04](./src/lab04/Readme%20RU.md)* | *[Aceder ao Laboratório 04](./src/lab04/Readme%20PT.md)*
