@@ -1,4 +1,10 @@
-from base import BaseProduct
+import sys
+import os
+
+# Ajuste de path para o Lab 03
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+
+from src.lab03.base import BaseProduct
 
 class DigitalProduct(BaseProduct): #classe filha
     def __init__(self, name: str, model: str, price: float, stock: int, download_link: str, file_size_mb: float):

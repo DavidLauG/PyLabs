@@ -18,8 +18,8 @@ class BaseProduct(Product):
     Interface comum para o Lab 03. 
     Define o método get_details() que será a base do polimorfismo.
     """
+    # Método que deve ser sobrescrito nas subclasses
     def get_details(self) -> str: #Метод, который необходимо переопределить в подклассах.
-        # Método a ser sobrescrito nas subclasses
         return f"{self.name} ({self.model})"
 
     def display_info(self):
