@@ -28,5 +28,3 @@ Neste laboratório, o sistema de inventário foi evoluído para um modelo de ges
 
 ##  --- Сценарий 3: Verificação de Interface ---
 ![Interface Validation](../../images/lab04/cen03.png)
-
-# 4. Conclusão

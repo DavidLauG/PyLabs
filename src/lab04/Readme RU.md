@@ -2,31 +2,29 @@
 
 # 1. Цель работы
 Aprofundar os conceitos de **abstração** e **múltipla herança,** focando em:
-+ **Classes Base Abstratas (ABC):** Definição de moldes que não podem ser instanciados diretamente.
-+ **Interfaces:** Criação de contratos de comportamento obrigatórios.
-+ **Múltipla Implementação:** Capacidade de uma classe assinar e cumprir múltiplos contratos simultaneamente.
-+ **Polimorfismo via Interfaces:** Manipulação de objetos baseada no que eles "sabem fazer" e não no que eles "são".
++ **Абстрактные базовые классы (АБК):** Определение шаблонов, которые нельзя создать напрямую.
++ **Интерфейсы:** Создание обязательных контрактов поведения.
++ **Множественная реализация:** Возможность класса подписывать и выполнять несколько контрактов одновременно.
++ **Полиморфизм через интерфейсы:** Манипулирование объектами на основе того, что они «умеют делать», а не на основе того, чем они «являются».
 # 2. О проекте
-Neste laboratório, o sistema de inventário foi evoluído para um modelo de gestão de Ativos de TI, utilizando as seguintes interfaces:
-## Interfaces (interfaces.py)
-+ **ISellable:** obriga a implementação do método ``sell()``. Garante que apenas produtos comercializáveis sejam processados pelo sistema de vendas.
-+ **IDisplayable:** obriga a implementação do método ``get_technical_sheet()``. Garante que cada ativo de TI forneça as suas especificações técnicas de forma padronizada.
-## Classes de TI (models.py)
-**Múltipla Herança** para combinar dados de labs anteriores com os novos contratos:
-+ **SoftwareProduct:** Herda de ``DigitalProduct`` (Lab 03) e implementa ``ISellable`` e ``IDisplayable``. Foca em versões e links de download.
-+ **HardwareProduct:** Herda de ``PerishableProduct`` (Lab 03) e implementa ``ISellable`` e ``IDisplayable``. Utiliza a lógica de expiração para representar a **Garantia Técnica.**
-+ **SystemPatch** (Prova de Conceito): Herda apenas de ``IDisplayable``. Serve para demonstrar a filtragem negativa no sistema.
+В этой лабораторной работе система учета была преобразована в модель управления ИТ-активами с использованием следующих интерфейсов:
+## Интерфейсы (interfaces.py)
++ **ISellable:** требует реализации метода ``sell()``. Гарантирует, что система продаж обрабатывает только товары, пригодные для продажи.
++ **IDisplayable:** требует реализации метода ``get_technical_sheet()``. Гарантирует, что каждый ИТ-актив предоставляет свои технические характеристики стандартизированным образом.
+## ИТ-классы (models.py)
+**Множественное наследование** для объединения данных из предыдущих лабораторных работ с новыми контрактами:
++ **SoftwareProduct:** наследует от ``DigitalProduct`` (Лабораторная работа 03) и реализует ``ISellable`` и ``IDisplayable``. Сосредоточен на версиях и ссылках для скачивания.
++ **HardwareProduct:** Наследует от ``PerishableProduct`` (Лабораторная работа 03) и реализует ``ISellable`` и ``IDisplayable``. Использует логику истечения срока действия для представления **технической гарантии.**
++ **SystemPatch** (Протокол): Наследует только от ``IDisplayable``. Служит для демонстрации отрицательной фильтрации в системе.
 
 # 3. Демонстрация проекта (demo.py)
 
-##  --- Сценарий 1: Interfaces como Tipos (POLIMORFISMO VIA INTERFACE) ---
+##  --- Сценарий 1: Интерфейсы как типы (ПОЛИМОРФИЗМ ЧЕРЕЗ ИНТЕРФЕЙС) ---
 ![Listagem de produtos](../../images/lab04/cen01.png)
 
-##  --- Сценарий 2: Filtros por Tipo ---
+##  --- Сценарий 2: Фильтры по типу ---
 
 ![Listagem de produtos](../../images/lab04/cen02.png)
 
-##  --- Сценарий 3: Verificação de Interface ---
+##  --- Сценарий 3: Проверка интерфейса ---
 ![Interface Validation](../../images/lab04/cen03.png)
-
-# 4. Conclusão
