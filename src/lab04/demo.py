@@ -25,7 +25,7 @@ def run_demo():
     h2 = HardwareProduct("Monitor antigo", "CRT-90", 50.0, 2, 0) # Sem garantia/obsoleto
     patch = SoftwareProduct("Security Update KB500", "Win11", 0.0, 0, "link.com", 150)
 
-    catalog.add(s1); catalog.add(h1); catalog.add(s2); catalog.add(h2)
+    catalog.add(s1); catalog.add(h1); catalog.add(s2); catalog.add(h2); catalog.add(patch)
 
     # --- CENÁRIO 1: Polimorfismo via Interface (РАБОТА С ИНТЕРФЕЙСАМИ) ---
     # Pegamos tudo que é "Exibível" (IDisplayable)

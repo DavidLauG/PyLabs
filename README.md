@@ -14,3 +14,7 @@
 ## ЛР-4 — Интерфейсы и абстрактные классы (ABC)
 
 #### *[Перейти в Лабораторию 04](./src/lab04/Readme%20RU.md)* | *[Aceder ao Laboratório 04](./src/lab04/Readme%20PT.md)*
+
+## ЛР-5 — Функции как аргументы. Стратегии и делегаты.
+
+#### *[Перейти в Лабораторию 05](./src/lab05/Readme.md)* | *[Aceder ao Laboratório 05](./src/lab05/Readme.md)*

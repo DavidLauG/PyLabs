@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from src.lab03.models import DigitalProduct, PerishableProduct # Reutilizando a base
-from interfaces import ISellable, IDisplayable
+from src.lab04.interfaces import ISellable, IDisplayable
 
 # Nota 5: Software herda de DigitalProduct e assina ambos os contratos (Múltipla herança)
 class SoftwareProduct(DigitalProduct, ISellable, IDisplayable): #Множественное наследование
