@@ -7,7 +7,7 @@ from collection import AdvancedProductCatalog
 import strategies as st
 
 def run_demo():
-    print("=== LAB 05: PROGRAMAÇÃO FUNCIONAL E ESTRATÉGIAS (NOTA 5) ===\n")
+    print("=== ЛАБОРАТОРНАЯ РАБОТА 05: ФУНКЦИОНАЛЬНОЕ ПРОГРАММИРОВАНИЕ И СТРАТЕГИИ ===\n")
 
     catalog = AdvancedProductCatalog()
 
@@ -18,8 +18,8 @@ def run_demo():
     catalog.add(HardwareProduct("Teclado RGB", "G915", 1200.0, 5, 12))
     catalog.add(HardwareProduct("Mouse Velho", "M100", 50.0, 20, 0))
 
-    # --- CENÁRIO 1: Cadeia de Operações (Nota 5) ---
-    print("\n--- Cenário 1: Encadeamento (Filtro > Ordenação > Aplicação) ---")
+    # --- CENÁRIO 1: Cadeia de Operações (Nota 5) | Encadeamento (Filtro > Ordenação > Aplicação)---
+    print("\n--- Сценарий 1: Последовательное объединение (Фильтр > Сортировка > Применение) ---")
     # 1. Filtrar ativos (is_active)
     # 2. Ordenar por preço (lambda)
     # 3. Aplicar upgrade (estratégia callable)
@@ -28,22 +28,23 @@ def run_demo():
               .sort_by_strategy(st.sort_by_price_asc)
               .apply(st.TechUpgradeStrategy()))
 
-    print("Resultado da Cadeia:")
+    print("Результат цепочки:") #Resultado da Cadeia:
     print(result)
 
     # --- CENÁRIO 2: Fábrica de Funções e Map (Nota 4) ---
-    print("\n--- Cenário 2: Fábrica de Filtros e Map de Nomes ---")
+    print("\n--- Сценарий 2: Фабрика фильтров и карта имен ---")
     price_filter_3000 = st.make_price_filter(3000)
     affordable_items = catalog.filter_by(price_filter_3000)
     
-    print(f"Nomes dos itens até 3000 RUB: {affordable_items.get_names_list()}")
+    #Produtos até 3000 rublos
+    print(f"Наименования товаров стоимостью до 3000 рублей: {affordable_items.get_names_list()}")
 
     # --- CENÁRIO 3: Substituição de Estratégias (Nota 5) ---
-    print("\n--- Cenário 3: Troca de Estratégia de Desconto ---")
+    print("\n--- Сценарий 3: Изменение стратегии предоставления скидок ---")
     summer_sale = st.DiscountStrategy(10) # 10% de desconto
     black_friday = st.DiscountStrategy(50) # 50% de desconto
     
-    print("Aplicando 50% de desconto em tudo...")
+    print("На все товары предоставляется скидка 50%...")
     catalog.apply(black_friday)
     print(catalog)
 
