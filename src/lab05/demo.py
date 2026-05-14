@@ -34,7 +34,9 @@ def run_demo():
     # --- CENÁRIO 2: Fábrica de Funções e Map (Nota 4) ---
     print("\n--- Сценарий 2: Фабрика фильтров и карта имен ---")
     price_filter_3000 = st.make_price_filter(3000)
+    
     affordable_items = catalog.filter_by(price_filter_3000)
+    
     
     #Produtos até 3000 rublos
     print(f"Наименования товаров стоимостью до 3000 рублей: {affordable_items.get_names_list()}")
